@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 
 /* ── RESUME DATA ─────────────────────────────────────────────────────────── */
 const DATA = {
@@ -6,29 +6,30 @@ const DATA = {
   aka: "Jolts",
   tagline: "CS Student · Creator · AI Enthusiast",
   bio: `CS student at New Era University building things that spark ideas. I love working across the stack — databases to UI — always chasing that next "oh, that's clever" moment.`,
+  status: "Open to Opportunities",
   github: "https://github.com/RebEmnacin",
   school: "New Era University",
   degree: "BS in Computer Science",
   schoolYear: "2024 – present",
 
   skills: {
-    languages:  ["Java","Python","JavaScript","HTML","CSS"],
-    databases:  ["MySQL"],
-    tools:      ["React","FastAPI","Figma","VS Code","IntelliJ","Eclipse"],
+    languages: ["Java", "Python", "JavaScript", "HTML", "CSS"],
+    databases: ["MySQL"],
+    tools: ["React", "FastAPI", "Figma", "VS Code", "IntelliJ", "Eclipse"],
   },
 
   stack: [
-    { icon:"☕", name:"Java" },
-    { icon:"🐍", name:"Python" },
-    { icon:"⚡", name:"JavaScript" },
-    { icon:"🌐", name:"HTML" },
-    { icon:"🎨", name:"CSS" },
-    { icon:"🗄️", name:"MySQL" },
-    { icon:"⚛️", name:"React" },
-    { icon:"🚀", name:"FastAPI" },
-    { icon:"🎭", name:"Figma" },
-    { icon:"☁️", name:"Oracle Cloud" },
-    { icon:"🤖", name:"AI" },
+    { icon: "☕", name: "Java" },
+    { icon: "🐍", name: "Python" },
+    { icon: "⚡", name: "JavaScript" },
+    { icon: "🌐", name: "HTML" },
+    { icon: "🎨", name: "CSS" },
+    { icon: "🗄️", name: "MySQL" },
+    { icon: "⚛️", name: "React" },
+    { icon: "🚀", name: "FastAPI" },
+    { icon: "🎭", name: "Figma" },
+    { icon: "☁️", name: "Oracle Cloud" },
+    { icon: "🤖", name: "AI" },
   ],
 
   certs: [
@@ -68,7 +69,7 @@ const DATA = {
       emoji: "🍞",
       name: "breadcrumber",
       desc: "An AI-powered roadmap builder for creatives who struggle to start. ADHD-friendly project manager that breaks goals into bite-sized, achievable steps.",
-      tags: ["React","FastAPI","Gemini AI","Python"],
+      tags: ["React", "FastAPI", "Gemini AI", "Python"],
       url: "https://github.com/RebEmnacin/breadcrumber-app",
     },
     {
@@ -76,7 +77,7 @@ const DATA = {
       emoji: "🌐",
       name: "Portfolio Website",
       desc: "This very portfolio! Built with pure HTML, CSS and JS — then re-imagined in React. Deployed on GitHub Pages.",
-      tags: ["HTML","CSS","JS","React"],
+      tags: ["HTML", "CSS", "JS", "React"],
       url: "https://github.com/RebEmnacin",
     },
     {
@@ -91,15 +92,6 @@ const DATA = {
   ],
 };
 
-/* ── NAV CONFIG ──────────────────────────────────────────────────────────── */
-const PAGES = [
-  { id:"home",     label:"home.jsx",     icon: <HomeIcon /> },
-  { id:"profile",  label:"profile.jsx",  icon: <PersonIcon /> },
-  { id:"certs",    label:"certs.jsx",    icon: <StarIcon /> },
-  { id:"projects", label:"projects.jsx", icon: <MonitorIcon /> },
-  { id:"contact",  label:"contact.jsx",  icon: <MailIcon /> },
-];
-
 /* ── SVG ICONS ───────────────────────────────────────────────────────────── */
 function HomeIcon()    { return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>; }
 function PersonIcon()  { return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>; }
@@ -110,6 +102,15 @@ function GithubIcon()  { return <svg width="16" height="16" viewBox="0 0 24 24" 
 function ArrowIcon()   { return <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>; }
 function ExtLinkIcon() { return <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>; }
 
+/* ── NAV CONFIG ──────────────────────────────────────────────────────────── */
+const PAGES = [
+  { id: "home",     label: "home.jsx",     icon: <HomeIcon /> },
+  { id: "profile",  label: "profile.jsx",  icon: <PersonIcon /> },
+  { id: "certs",    label: "certs.jsx",    icon: <StarIcon /> },
+  { id: "projects", label: "projects.jsx", icon: <MonitorIcon /> },
+  { id: "contact",  label: "contact.jsx",  icon: <MailIcon /> },
+];
+
 /* ── CSS-IN-JS ───────────────────────────────────────────────────────────── */
 const css = `
   @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap');
@@ -119,10 +120,12 @@ const css = `
     --bg:#060608;--bg2:#0d0d12;--bg3:#141420;
     --border:#1e1e2e;--border2:#2a2a3f;
     --text:#8b8baa;--text-h:#f0efff;--text-m:#c4c3e0;
-    --accent:#FDDA0D;--sans:'Syne',sans-serif;
-    --serif:'Instrument Serif',Georgia,serif;--mono:'DM Mono',monospace;
+    --accent:#FDDA0D;
+    --sans:'Syne',sans-serif;
+    --serif:'Instrument Serif',Georgia,serif;
+    --mono:'DM Mono',monospace;
   }
-  body{background:var(--bg);font-family:var(--sans);color:var(--text);overflow-x:hidden}
+  body{background:var(--bg);font-family:var(--sans);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
   button{cursor:pointer;font-family:var(--sans)}
   a{text-decoration:none}
   input,textarea{font-family:var(--sans)}
@@ -134,7 +137,8 @@ const css = `
                      linear-gradient(90deg,var(--border) 1px,transparent 1px);
     background-size:48px 48px;opacity:.35;
   }
-  /* noise */
+
+  /* noise overlay */
   .noise{
     position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.03;mix-blend-mode:overlay;
     background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -147,13 +151,20 @@ const css = `
     display:flex;flex-direction:column;align-items:center;
     padding:20px 0 24px;gap:4px;z-index:100;backdrop-filter:blur(12px);
   }
-  .sidebar-logo{width:38px;height:38px;margin-bottom:18px;display:flex;align-items:center;justify-content:center}
-  .sidebar-logo img{width:38px;height:38px;object-fit:contain;filter:drop-shadow(0 0 10px rgba(253,218,13,.6))}
+  .sidebar-logo{
+    width:42px;height:42px;margin-bottom:18px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .sidebar-logo img{
+    width:42px;height:42px;object-fit:contain;
+    filter:drop-shadow(0 0 12px rgba(253,218,13,.7));
+    transition:filter .2s;
+  }
+  .sidebar-logo img:hover{filter:drop-shadow(0 0 20px rgba(253,218,13,1))}
   .nav-btn{
     width:44px;height:44px;border:none;background:none;border-radius:10px;
     display:flex;align-items:center;justify-content:center;
     color:var(--text);transition:background .2s,color .2s;position:relative;
-    font-size:18px;
   }
   .nav-btn:hover,.nav-btn.active{background:var(--border2);color:var(--accent)}
   .nav-tooltip{
@@ -165,7 +176,6 @@ const css = `
     font-family:var(--mono);letter-spacing:.04em;
   }
   .nav-btn:hover .nav-tooltip{opacity:1}
-  .nav-divider{width:28px;height:1px;background:var(--border);margin:4px 0}
 
   /* main layout */
   .app{margin-left:68px;min-height:100vh;position:relative;z-index:2}
@@ -229,7 +239,7 @@ const css = `
   .btn-ghost:hover{border-color:rgba(253,218,13,.4);color:var(--accent)}
   .hero-btns{display:flex;gap:10px;flex-wrap:wrap}
 
-  /* right panel stats */
+  /* stat cards */
   .stat-card{
     background:var(--bg2);border:1px solid var(--border);
     border-radius:16px;padding:22px 24px;position:relative;overflow:hidden;
@@ -242,17 +252,17 @@ const css = `
   .stat-label{font-family:var(--mono);font-size:11px;color:var(--text);letter-spacing:.08em}
   .stat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
 
-  .quick-links{display:flex;flex-direction:column;gap:8px}
+  /* quick links */
   .quick-link{
     display:flex;align-items:center;gap:12px;
     background:var(--bg2);border:1px solid var(--border);
     border-radius:12px;padding:14px 18px;color:var(--text-h);
-    transition:all .2s;font-size:13px;font-weight:600;
+    transition:all .2s;font-size:13px;font-weight:600;width:100%;text-align:left;
   }
   .quick-link:hover{border-color:rgba(253,218,13,.4);transform:translateX(4px);color:var(--accent)}
   .quick-link svg{opacity:.5;transition:opacity .2s}
   .quick-link:hover svg{opacity:1}
-  .quick-link .ql-arrow{margin-left:auto;opacity:.3;transition:all .2s}
+  .ql-arrow{margin-left:auto;opacity:.3;transition:all .2s}
   .quick-link:hover .ql-arrow{opacity:1;transform:translateX(3px)}
 
   /* stack ticker */
@@ -320,6 +330,7 @@ const css = `
     padding:4px 12px;border-radius:100px;letter-spacing:.04em;
   }
 
+  /* education */
   .edu-card{
     background:var(--bg2);border:1px solid var(--border);
     border-radius:14px;padding:20px 22px;
@@ -333,6 +344,7 @@ const css = `
     padding:4px 14px;border-radius:100px;
   }
 
+  /* pills */
   .pills{display:flex;flex-wrap:wrap;gap:8px}
   .pill{
     background:var(--bg3);border:1px solid var(--border2);
@@ -440,6 +452,7 @@ const css = `
   .contact-arrow{margin-left:auto;color:var(--text);transition:all .2s;opacity:.5}
   .contact-link:hover .contact-arrow{transform:translateX(4px);color:var(--accent);opacity:1}
 
+  /* form */
   .form-card{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:36px}
   .form-card h2{font-family:var(--serif);font-size:28px;color:var(--text-h);margin-bottom:4px;letter-spacing:-.5px}
   .form-card>p{font-size:13px;color:var(--text);margin-bottom:24px}
@@ -468,7 +481,7 @@ const css = `
   .sec-div-label{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text);white-space:nowrap}
   .sec-div-line{flex:1;height:1px;background:var(--border)}
 
-  /* fade-in animation */
+  /* animations */
   @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
   .fade-up{animation:fadeUp .45s ease both}
   .fade-up-1{animation:fadeUp .45s ease .05s both}
@@ -497,9 +510,9 @@ function Ticker({ stack }) {
 
 /* ── HOME PAGE ───────────────────────────────────────────────────────────── */
 function HomePage({ goTo }) {
-  const totalCerts = DATA.certs.length;
+  const totalCerts    = DATA.certs.length;
   const totalProjects = DATA.projects.filter(p => !p.placeholder).length;
-  const totalSkills = Object.values(DATA.skills).flat().length;
+  const totalSkills   = Object.values(DATA.skills).flat().length;
 
   return (
     <>
@@ -523,9 +536,8 @@ function HomePage({ goTo }) {
           </div>
         </div>
 
-        {/* RIGHT — filled with stats + quick links */}
+        {/* RIGHT */}
         <div className="home-right fade-up-1">
-          {/* Stats */}
           <div className="stat-row">
             <div className="stat-card">
               <div className="stat-num">{totalCerts}</div>
@@ -541,14 +553,13 @@ function HomePage({ goTo }) {
             </div>
           </div>
 
-          {/* Quick links */}
           <div style={{ display:"flex", flexDirection:"column", gap:"6px" }}>
             <div style={{ fontFamily:"var(--mono)", fontSize:"10px", color:"var(--text)", letterSpacing:".1em", textTransform:"uppercase", marginBottom:"6px" }}>// explore</div>
             {[
-              { icon:"👤", label:"Profile & Education", page:"profile" },
+              { icon:"👤", label:"Profile & Education",       page:"profile"  },
               { icon:"🏆", label:"Certifications (IBM, Oracle)", page:"certs" },
-              { icon:"💼", label:"Projects & Work", page:"projects" },
-              { icon:"📬", label:"Get In Touch", page:"contact" },
+              { icon:"💼", label:"Projects & Work",            page:"projects" },
+              { icon:"📬", label:"Get In Touch",               page:"contact"  },
             ].map(item => (
               <button key={item.page} className="quick-link" onClick={() => goTo(item.page)}>
                 <span style={{ fontSize:"18px" }}>{item.icon}</span>
@@ -558,17 +569,15 @@ function HomePage({ goTo }) {
             ))}
           </div>
 
-          {/* GitHub link */}
           <a href={DATA.github} target="_blank" rel="noreferrer"
             style={{ display:"inline-flex", alignItems:"center", gap:"8px", fontFamily:"var(--mono)", fontSize:"11px", color:"var(--text)", padding:"10px 16px", borderRadius:"10px", border:"1px solid var(--border)", transition:"all .2s", marginTop:"4px" }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(253,218,13,.4)"; e.currentTarget.style.color = "var(--accent)"; }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.color = "var(--text)"; }}>
+            onMouseEnter={e => { e.currentTarget.style.borderColor="rgba(253,218,13,.4)"; e.currentTarget.style.color="var(--accent)"; }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor="var(--border)"; e.currentTarget.style.color="var(--text)"; }}>
             <GithubIcon /> github.com/RebEmnacin <ExtLinkIcon />
           </a>
         </div>
       </div>
 
-      {/* Stack ticker full-width at bottom */}
       <Ticker stack={DATA.stack} />
     </>
   );
@@ -639,7 +648,8 @@ function CertsPage() {
       <h1 className="page-title">My <em>Certifications</em></h1>
       <div className="cert-grid">
         {DATA.certs.map((c, i) => (
-          <a key={i} href={c.url} target="_blank" rel="noreferrer" className="cert-card fade-up"
+          <a key={i} href={c.url} target="_blank" rel="noreferrer"
+            className="cert-card fade-up"
             style={{ animationDelay: `${i * 0.07}s` }}>
             <div className="cert-banner"
               style={{ background: `linear-gradient(135deg, #0a0a14, ${c.color}18)` }}>
@@ -668,7 +678,10 @@ function ProjectsPage() {
       <div className="page-eyebrow">Portfolio</div>
       <h1 className="page-title">Things I've <em>Built</em></h1>
 
-      <div className="sec-div"><span className="sec-div-label">Featured</span><span className="sec-div-line"/></div>
+      <div className="sec-div">
+        <span className="sec-div-label">Featured</span>
+        <span className="sec-div-line" />
+      </div>
 
       <a href={featured.url} target="_blank" rel="noreferrer" className="feat-card fade-up">
         <div className="feat-deco">{featured.emoji}</div>
@@ -681,7 +694,10 @@ function ProjectsPage() {
         <span className="feat-cta">View on GitHub <ArrowIcon /></span>
       </a>
 
-      <div className="sec-div"><span className="sec-div-label">All Projects</span><span className="sec-div-line"/></div>
+      <div className="sec-div">
+        <span className="sec-div-label">All Projects</span>
+        <span className="sec-div-line" />
+      </div>
 
       <div className="proj-grid">
         {others.map((p, i) => p.url ? (
@@ -695,7 +711,8 @@ function ProjectsPage() {
             <div className="proj-link">View on GitHub →</div>
           </a>
         ) : (
-          <div key={i} className="proj-card placeholder fade-up" style={{ animationDelay: `${i * 0.07}s` }}>
+          <div key={i} className="proj-card placeholder fade-up"
+            style={{ animationDelay: `${i * 0.07}s` }}>
             <div className="proj-icon">{p.emoji}</div>
             <h3>{p.name}</h3>
             <p>{p.desc}</p>
@@ -799,23 +816,22 @@ export default function App() {
       {/* SIDEBAR */}
       <nav className="sidebar">
         <div className="sidebar-logo">
-          <img src="https://raw.githubusercontent.com/RebEmnacin/RebEmnacin/main/Jolt.png"
+          <img
+            src="/Reb_logo.png"
             alt="Jolts"
             onError={e => { e.target.style.display="none"; e.target.nextSibling.style.display="flex"; }}
           />
           <span style={{ display:"none", fontSize:"22px", alignItems:"center", justifyContent:"center" }}>⚡</span>
         </div>
 
-        {PAGES.map((p, i) => (
+        {PAGES.map((p) => (
           <button
             key={p.id}
             className={`nav-btn${page === p.id ? " active" : ""}`}
             onClick={() => goTo(p.id)}
-            title={p.label}
           >
             {p.icon}
             <span className="nav-tooltip">{p.label}</span>
-            {i === 3 && <></>}
           </button>
         ))}
       </nav>
